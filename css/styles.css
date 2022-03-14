@@ -5,6 +5,7 @@
   --color-accent: #2196f3;
   --color-social-link: #afb1b8;
   --icon-sub-text: #757575;
+  --timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* основные стили в макете */
@@ -107,6 +108,7 @@ body {
 .contacts-item:focus .contacts-icon {
   color: var(--color-accent);
 }
+
 .nav-item {
   position: relative;
 }
@@ -114,7 +116,7 @@ body {
   position: absolute;
   content: '';
   width: 100%;
-  height: 5%;
+  height: 4px;
   bottom: -1px;
   left: 0;
   background: #2196f3;
@@ -124,6 +126,13 @@ body {
 .link:hover,
 .link:focus {
   color: var(--color-accent);
+}
+
+/* header hover transmition */
+.contacts-item,
+.contacts-icon,
+.link {
+  transition: color 250ms var(--timing-function);
 }
 
 /* секция main index.html */
@@ -167,6 +176,7 @@ body {
   border-radius: 4px;
   border: 0;
   padding: 10px 32px;
+  transition: background-color 250ms var(--timing-function);
 }
 .hero .btn:hover,
 .herro .btn:focus {
@@ -184,20 +194,25 @@ body {
   top: 0;
   width: 100%;
   height: 100%;
-
   background: rgba(0, 0, 0, 0.2);
+  opacity: 1;
+  transition: opacity 250ms var(--timing-function);
+}
+.backdrop.is-hidden .backdrop-form {
+  transform: translate(-50%, -50%) scale(0.5);
 }
 .backdrop-form {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(1);
   min-width: 528px;
   min-height: 581px;
   background-color: var(--main-background);
   box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14),
     0px 2px 1px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
+  transition: transform 250ms var(--timing-function);
 }
 .backdrop-btn {
   position: absolute;
@@ -321,6 +336,7 @@ body {
 }
 .team-icon-svg {
   fill: currentColor;
+  transition: color 250ms var(--timing-function);
 }
 .team-icon:not(:last-child) {
   margin-right: 10px;
@@ -332,6 +348,8 @@ body {
   color: var(--color-social-link);
   width: 44px;
   height: 44px;
+  border-radius: 50%;
+  transition: background-color 250ms var(--timing-function);
 }
 .team-socials-link:hover .team-icon-svg,
 .team-socials-link:focus .team-icon-svg {
@@ -340,7 +358,6 @@ body {
 .team-socials-link:hover,
 .team-socials-link:focus {
   background-color: var(--color-accent);
-  border-radius: 50%;
 }
 .team-text-cont {
   padding-top: 30px;
@@ -381,9 +398,11 @@ body {
   border-radius: 4px;
   width: 170px;
   height: 92px;
+  transition: border 250ms var(--timing-function);
 }
 .client-icon {
   fill: currentColor;
+  transition: color 250ms var(--timing-function);
 }
 .client-socials-link:hover .client-icon,
 .client-socials-link:focus .client-icon {
@@ -417,6 +436,8 @@ body {
   padding: 6px 22px;
   border-radius: 4px;
   border: 0;
+  transition: background-color 250ms var(--timing-function), color 250ms var(--timing-function),
+    box-shadow 250ms var(--timing-function);
 }
 .gallery-btn:hover,
 .gallery-btn:focus {
@@ -433,6 +454,7 @@ body {
 }
 .project-img-cont {
   position: relative;
+  overflow: hidden;
 }
 .project-img {
   display: block;
@@ -440,10 +462,10 @@ body {
 }
 .project-img-text {
   position: absolute;
-  width: 100%;
-  height: 100%;
   top: 0;
   left: 0;
+  width: 100%;
+  height: 100%;
   color: var(--main-background);
   font-weight: 400;
   font-size: 18px;
@@ -451,11 +473,12 @@ body {
   margin: 0;
   padding: 63px 24px;
   background: rgba(33, 150, 243, 0.9);
-  opacity: 0;
+  transform: translateY(100%);
+  transition: transform 250ms var(--timing-function);
 }
 .project-link:hover .project-img-text,
 .project-link:focus .project-img-text {
-  opacity: 1;
+  transform: translateY(0);
 }
 .project-item {
   position: relative;
@@ -474,10 +497,11 @@ body {
   display: block;
   text-decoration: none;
   color: inherit;
+  transition: background-color 250ms var(--timing-function), box-shadow 250ms var(--timing-function);
 }
 .project-link:hover,
 .project-link:focus {
-  background: var(--main-background);
+  background-color: var(--main-background);
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.12), 0px 4px 4px rgba(0, 0, 0, 0.06),
     1px 4px 6px rgba(0, 0, 0, 0.16);
 }
@@ -569,6 +593,7 @@ body {
   height: 44px;
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 50%;
+  transition: background-color 250ms var(--timing-function);
 }
 .footer-socials-link:hover,
 .footer-socials-link:focus {
